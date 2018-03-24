@@ -2,8 +2,8 @@
 public class ArgRunner{
 	private int argument;
 	//сохранить переменную.
-	public int inputArg(int a){
-		return this.argument=a;
+	public void inputArg(int a){
+		this.argument=a;
 	}
 	//получить переменную.
 	public int getArg(){
