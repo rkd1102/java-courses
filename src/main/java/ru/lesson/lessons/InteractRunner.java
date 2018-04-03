@@ -67,6 +67,7 @@ public class InteractRunner extends ArgRunner {
         final Pattern p = Pattern.compile("\\/|\\^|\\+|\\-|\\*");
         for (String param : command) {
             if (text.contains(param)) {
+                //9if (param.equals("^"))param="exp";
                 String[] temp = p.split(text, 2);
                 inputParam = new String[]{temp[0], temp[1], param};
                 break;
@@ -121,7 +122,10 @@ public class InteractRunner extends ArgRunner {
      * @throws Exception Исключения вычисления
      */
     public void choiceOperand(String... arg) throws Exception {
-        switch (arg[2]) {
+        switch (arg[arg.length-1]) {
+            case "^":
+                calc.exp(Integer.valueOf(arg[0]), Integer.valueOf(arg[1]));
+                break;
             case "+":
                 calc.add(Integer.valueOf(arg[0]), Integer.valueOf(arg[1]));
                 break;
@@ -133,9 +137,6 @@ public class InteractRunner extends ArgRunner {
                 break;
             case "/":
                 calc.div(Integer.valueOf(arg[0]), Integer.valueOf(arg[1]));
-                break;
-            case "^":
-                calc.exp(Integer.valueOf(arg[0]), Integer.valueOf(arg[1]));
                 break;
         }
     }
